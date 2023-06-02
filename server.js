@@ -12,8 +12,8 @@ app.use((req, res, next) => {
     next()
 })
 
-app.use('/api/anime', animeRoutes)
-app.use(cors(corsOptions));
+app.use('/api/anime', cors(corsOptions),animeRoutes)
+//app.use(cors(corsOptions));
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         app.listen(process.env.PORT, () => {
