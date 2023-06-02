@@ -13,7 +13,7 @@ app.use((req, res, next) => {
 })
 
 app.use('/api/anime', animeRoutes)
-app.use(cors());
+app.use(cors(corsOptions));
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         app.listen(process.env.PORT, () => {
