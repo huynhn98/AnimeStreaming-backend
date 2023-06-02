@@ -13,15 +13,7 @@ app.use((req, res, next) => {
 })
 
 app.use('/api/anime', animeRoutes)
-// Add Access Control Allow Origin headers
-app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://kirara-znea.onrender.com");
-    res.header(
-      "Access-Control-Allow-Headers",
-      "Origin, X-Requested-With, Content-Type, Accept"
-    );
-    next();
-  });
+app.use(cors(corsOptions));
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         app.listen(process.env.PORT, () => {
