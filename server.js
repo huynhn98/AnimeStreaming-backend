@@ -4,6 +4,7 @@ const animeRoutes = require('./routes/routes')
 const mongoose = require('mongoose')
 const app = express()
 const cors = require('cors')
+const corsOptions = require('./config/corsOptions')
 
 app.use(express.json())
 app.use((req, res, next) => {
@@ -12,10 +13,7 @@ app.use((req, res, next) => {
 })
 
 app.use('/api/anime', animeRoutes)
-app.use(cors({ 
-    origin: "https://kirara-znea.onrender.com", 
-    credentials: true 
-   }));
+app.use(cors(corsOptions));
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         app.listen(process.env.PORT, () => {
